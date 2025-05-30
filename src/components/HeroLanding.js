@@ -1,7 +1,30 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 
 const HeroLanding = () => {
+  const [deferredPrompt, setDeferredPrompt] = useState(null);
+  const [canInstall, setCanInstall] = useState(false);
+
+  useEffect(() => {
+    const handler = (e) => {
+      e.preventDefault();
+      setDeferredPrompt(e);
+      setCanInstall(true); // Mostrar botón solo si se puede instalar
+    };
+
+    window.addEventListener('beforeinstallprompt', handler);
+    return () => window.removeEventListener('beforeinstallprompt', handler);
+  }, []);
+
+  const handleInstall = () => {
+    if (deferredPrompt) {
+      deferredPrompt.prompt();
+      deferredPrompt.userChoice.then(() => {
+        setDeferredPrompt(null);
+      });
+    }
+  };
+
   return (
     <section
       className="relative h-screen w-full flex items-center justify-center text-center overflow-hidden"
@@ -11,6 +34,43 @@ const HeroLanding = () => {
         backgroundPosition: 'center',
       }}
     >
+{/* 🔹 Botones de descarga sin fondo */}
+<motion.div
+  className="absolute top-24 right-6 z-30 flex flex-col space-y-3 items-end"
+  initial={{ opacity: 0, y: -20 }}
+  animate={{ opacity: 1, y: 0 }}
+  transition={{ duration: 1.4, delay: 1, ease: 'easeOut' }}
+>
+  {/* App Store */}
+  <a
+    href="#"
+    onClick={(e) => {
+      e.preventDefault();
+      alert(
+        'En iOS:\n1. Abre en Safari\n2. Toca el botón compartir\n3. Selecciona "Agregar a pantalla de inicio"'
+      );
+    }}
+    className="hover:opacity-80 transition"
+  >
+    <img src="/appstore-badge.svg" alt="Descargar en App Store" className="h-11" />
+  </a>
+
+  {/* Google Play — solo si se puede instalar */}
+  {canInstall && (
+    <a
+      href="#"
+      onClick={(e) => {
+        e.preventDefault();
+        handleInstall();
+      }}
+      className="hover:opacity-80 transition"
+    >
+      <img src="/googleplay-badge.svg" alt="Disponible en Google Play" className="h-11" />
+    </a>
+  )}
+</motion.div>
+
+
       {/* Capa oscura base */}
       <motion.div
         className="absolute inset-0 bg-black z-0"
@@ -36,18 +96,17 @@ const HeroLanding = () => {
           visible: { transition: { staggerChildren: 0.25 } },
         }}
       >
-{/* 🟡 Bloque del Logo */}
-<motion.div>
-  <motion.img
-    src="/LogoB.png"
-    alt="Logo JCavalier"
-    className="w-28 h-28 object-contain"
-    initial={{ scale: 0, y: 0, x: 0 }}
-    animate={{ scale: 3, y: -45, x: 0 }}
-    transition={{ duration: 2, delay: 1, ease: 'easeInOut' }}
-  />
-</motion.div>
-
+        {/* 🟡 Bloque del Logo */}
+        <motion.div>
+          <motion.img
+            src="/LogoB.png"
+            alt="Logo JCavalier"
+            className="w-28 h-28 object-contain"
+            initial={{ scale: 0, y: 0, x: 0 }}
+            animate={{ scale: 3, y: -45, x: 0 }}
+            transition={{ duration: 2, delay: 1, ease: 'easeInOut' }}
+          />
+        </motion.div>
 
         {/* 🟢 Bloque del subtítulo + botones */}
         <motion.div className="flex flex-col items-center space-y-6">
