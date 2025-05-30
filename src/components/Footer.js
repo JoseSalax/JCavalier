@@ -38,7 +38,7 @@ const Footer = () => {
               <MapPin size={16} /> Caracas, Venezuela
             </li>
             <li className="flex items-center gap-2">
-              <Phone size={16} /> +58 412-000-0000
+              <Phone size={16} /> +58 412-896-6414
             </li>
             <li className="flex items-center gap-2">
               <Mail size={16} /> contacto@jcavalier.com

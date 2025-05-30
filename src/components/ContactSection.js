@@ -23,7 +23,7 @@ const ContactSection = () => {
             </li>
             <li className="flex items-center gap-3">
               <Phone size={18} className="text-white" />
-              +58 412-000-0000
+              +58 412-896-6414  
             </li>
             <li className="flex items-center gap-3">
               <Mail size={18} className="text-white" />
@@ -46,7 +46,7 @@ const ContactSection = () => {
         {/* Botones de contacto directo */}
         <div className="flex flex-col items-center gap-4 sm:gap-5 md:gap-6 animate-slide-in-from-bottom delay-300 duration-700">
           <a
-            href="https://wa.me/1234567890"
+href="https://wa.me/584128966414"
             target="_blank"
             rel="noopener noreferrer"
             className="w-48 py-4 border border-white text-white text-base md:text-lg uppercase tracking-wider hover:bg-white hover:text-black transition rounded-full shadow-md backdrop-blur-sm text-center"

@@ -126,7 +126,7 @@ const HeroLanding = () => {
             transition={{ duration: 1.2, delay: 1.6, ease: 'easeOut' }}
           >
             <a
-              href="https://wa.me/1234567890"
+href="https://wa.me/584128966414"
               className="w-48 py-4 border border-white text-white text-lg uppercase tracking-wider hover:bg-white hover:text-black transition rounded-full shadow-md backdrop-blur-sm text-center"
               target="_blank"
               rel="noopener noreferrer"

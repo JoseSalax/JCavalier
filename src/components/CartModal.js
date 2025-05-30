@@ -37,7 +37,7 @@ const CartModal = ({ isOpen, onClose, onAddMore, cartItems, onRemoveItem, onClea
     message +
     `%0A%0AGracias por su atención, espero su confirmación 😊`;
 
-  const whatsappUrl = `https://wa.me/+584128966414?text=${finalMessage}`;
+  const whatsappUrl = `https://wa.me/584128966414?text=${finalMessage}`;
 
   return (
     <AnimatePresence>
