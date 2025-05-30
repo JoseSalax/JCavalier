@@ -6,7 +6,7 @@ const SocialFloatButtons = () => {
     <div className="fixed bottom-6 right-6 z-50 flex flex-col items-end gap-3">
       {/* WhatsApp */}
       <a
-        href="https://wa.me/584120000000"
+        href="https://wa.me/+584128966414"
         target="_blank"
         rel="noopener noreferrer"
         className="bg-[#25D366] text-white rounded-full p-3 shadow-md hover:scale-105 transition transform"
