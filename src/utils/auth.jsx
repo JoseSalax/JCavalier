@@ -1,7 +1,7 @@
 // utils/auth.js
 
-// Simulación de login básico con correo y clave
-export const login = (email, password) => {
+// Simulación de login con promesa para permitir await (aunque sea local)
+export const login = async (email, password) => {
   return email === 'admin@jcavalier.com' && password === 'jcavalier2025';
 };
 

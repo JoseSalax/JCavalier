@@ -17,12 +17,18 @@ const AdminLoginForm = () => {
     emailRef.current?.focus();
   }, []);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if (login(email, password)) {
-      setSession();
-      navigate('/admin/dashboard');
-    } else {
+    try {
+      const success = await login(email, password);
+      if (success) {
+        setSession();
+        navigate('/admin/dashboard');
+      } else {
+        setError(true);
+      }
+    } catch (err) {
+      console.error('Error al intentar iniciar sesión:', err);
       setError(true);
     }
   };
@@ -36,28 +42,16 @@ const AdminLoginForm = () => {
         backgroundPosition: 'center',
       }}
     >
-      {/* Fondo y efecto cristal */}
-      <motion.div
-        className="absolute inset-0 bg-black z-0"
-        initial={{ opacity: 1 }}
-        animate={{ opacity: 0.5 }}
-        transition={{ duration: 1.4, ease: 'easeInOut' }}
-      />
-      <motion.div
-        className="absolute inset-0 z-10 backdrop-blur-xl bg-white bg-opacity-5"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 0.2 }}
-        transition={{ duration: 1.8, delay: 0.6, ease: 'easeOut' }}
-      />
+      {/* Capa oscura y cristalina */}
+      <motion.div className="absolute inset-0 bg-black z-0" initial={{ opacity: 1 }} animate={{ opacity: 0.5 }} transition={{ duration: 1.4 }} />
+      <motion.div className="absolute inset-0 z-10 backdrop-blur-xl bg-white bg-opacity-5" initial={{ opacity: 0 }} animate={{ opacity: 0.2 }} transition={{ duration: 1.8, delay: 0.6 }} />
 
-      {/* Contenido principal */}
+      {/* Formulario */}
       <motion.div
         className="relative z-20 px-6 text-white flex flex-col items-center space-y-8 w-full max-w-sm"
         initial="hidden"
         animate="visible"
-        variants={{
-          visible: { transition: { staggerChildren: 0.25 } },
-        }}
+        variants={{ visible: { transition: { staggerChildren: 0.25 } } }}
       >
         <motion.img
           src="/LogoB.png"
@@ -65,7 +59,7 @@ const AdminLoginForm = () => {
           className="w-24 h-24 object-contain"
           initial={{ scale: 0 }}
           animate={{ scale: 2, y: -20 }}
-          transition={{ duration: 1.5, delay: 0.5, ease: 'easeInOut' }}
+          transition={{ duration: 1.5, delay: 0.5 }}
         />
 
         <form onSubmit={handleSubmit} className="w-full space-y-4">
@@ -100,7 +94,7 @@ const AdminLoginForm = () => {
 
           {error && (
             <div className="text-red-400 text-sm text-center">
-              Credenciales inválidas
+              Credenciales inválidas o error de conexión
             </div>
           )}
 

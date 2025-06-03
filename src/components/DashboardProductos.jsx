@@ -1,4 +1,3 @@
-// src/components/DashboardProductos.jsx
 import React from 'react';
 import { motion } from 'framer-motion';
 
@@ -12,7 +11,7 @@ const DashboardProductos = () => {
         backgroundPosition: 'center',
       }}
     >
-      {/* Fondo oscuro y efecto cristal */}
+      {/* Fondo y efecto cristal */}
       <motion.div
         className="absolute inset-0 bg-black z-0"
         initial={{ opacity: 1 }}
@@ -26,9 +25,9 @@ const DashboardProductos = () => {
         transition={{ duration: 1.8, delay: 0.6, ease: 'easeOut' }}
       />
 
-      {/* Contenido del catálogo */}
+      {/* Contenido principal */}
       <motion.div
-        className="relative z-20 text-white flex flex-col items-center w-full max-w-6xl"
+        className="relative z-20 text-white flex flex-col items-center w-full max-w-4xl"
         initial="hidden"
         animate="visible"
         variants={{ visible: { transition: { staggerChildren: 0.25 } } }}
@@ -43,24 +42,24 @@ const DashboardProductos = () => {
         />
 
         <motion.h2
-          className="text-3xl font-bold uppercase tracking-wider mb-8"
+          className="text-3xl font-heading uppercase tracking-wider mb-6"
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1.2, delay: 1.3, ease: 'easeOut' }}
+          transition={{ duration: 1.2, delay: 1.3 }}
         >
           Gestión de Catálogo
         </motion.h2>
 
         <motion.div
-          className="bg-white/10 backdrop-blur-sm rounded-lg p-8 w-full text-left text-white space-y-6 shadow-md"
+          className="bg-white/10 backdrop-blur-md rounded-xl p-8 w-full text-left text-white space-y-6 shadow-lg"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1.2, delay: 1.6 }}
         >
-          <p className="text-lg">
-            Aquí podrás administrar todas las colecciones y productos de JCavalier. Pronto podrás:
+          <p className="text-base md:text-lg">
+            Aquí podrás administrar todas las colecciones y productos de JCavalier. Próximamente:
           </p>
-          <ul className="list-disc pl-5 space-y-2 text-sm">
+          <ul className="list-disc pl-5 space-y-2 text-sm md:text-base text-white/80">
             <li>Agregar nuevos productos a una colección</li>
             <li>Editar productos existentes</li>
             <li>Eliminar productos obsoletos</li>
