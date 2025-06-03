@@ -5,10 +5,10 @@ import { FaTiktok } from 'react-icons/fa';
 const ContactSection = () => {
   return (
     <section className="bg-black text-white py-10 px-4">
-      <div className="max-w-5xl mx-auto flex min-h-[250px]">
+      <div className="max-w-5xl mx-auto flex flex-col md:flex-row md:min-h-[250px]">
         
         {/* Contenedor izquierdo */}
-        <div className="flex-1 flex items-center justify-center text-center">
+        <div className="flex-1 flex items-center justify-center text-center mb-6 md:mb-0">
           <div className="space-y-3 max-w-xs">
             <h2 className="text-2xl font-heading uppercase tracking-widest">Contáctanos</h2>
             <p className="text-sm leading-relaxed">
@@ -19,8 +19,8 @@ const ContactSection = () => {
           </div>
         </div>
 
-        {/* Línea blanca */}
-        <div className="w-[1px] bg-white mx-5" />
+        {/* Línea blanca solo visible en pantallas medianas+ */}
+        <div className="hidden md:block w-[1px] bg-white mx-5" />
 
         {/* Contenedor derecho con botones */}
         <div className="flex-1 flex flex-col items-center justify-center space-y-4">
@@ -54,7 +54,6 @@ const ContactSection = () => {
             TikTok
           </a>
         </div>
-
       </div>
     </section>
   );
