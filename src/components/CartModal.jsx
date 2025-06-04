@@ -2,20 +2,20 @@ import React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const CartModal = ({ isOpen, onClose, onAddMore, cartItems, onRemoveItem, onClearCart }) => {
-  const message = cartItems
-    .map((item, i) =>
-      `🛍️ *Producto ${i + 1}:* ${item.model}%0A` +
-      `• Talla: ${item.size}%0A` +
-      `• Color: ${item.color}%0A` +
-      `• Precio: $${item.price}%0A--------------------`
-    )
-    .join('%0A');
+const message = cartItems
+  .map(
+    (item) =>
+      `Producto: ${item.model}%0A` +
+      `Talla: ${item.size}%0A` +
+      `Color: ${item.color}%0A` +
+      `Precio: ${item.price}`
+  )
+  .join('%0A%0A');
 
-  const finalMessage =
-    `Hola equipo JCavalier 👋,%0A` +
-    `Me interesa comprar los siguientes productos:%0A%0A` +
-    message +
-    `%0A%0AGracias por su atención, espero su confirmación 😊`;
+const finalMessage =
+  `🧾 Pedido confirmado desde el sitio JCAVALIER:%0A%0A` +
+  message +
+  `%0A%0A💬 Gracias por su atención. Espero su confirmación.`;
 
   const whatsappUrl = `https://wa.me/584128966414?text=${finalMessage}`;
 
