@@ -3,13 +3,14 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { ZoomIn, ZoomOut } from 'lucide-react';
 
 const SizeSelector = ({ onSelect, onClose, product, collection }) => {
+  const items = collection.items; // Extraemos los productos
   const [selectedSize, setSelectedSize] = useState('');
   const [currentIndex, setCurrentIndex] = useState(
-    collection.findIndex((p) => p.id === product.id) || 0
+    items.findIndex((p) => p.id === product.id) || 0
   );
   const [isZoomed, setIsZoomed] = useState(false);
 
-  const currentProduct = collection[currentIndex];
+  const currentProduct = items[currentIndex];
 
   const handleConfirm = () => {
     if (selectedSize) {
@@ -21,11 +22,11 @@ const SizeSelector = ({ onSelect, onClose, product, collection }) => {
   };
 
   const handlePrev = () => {
-    setCurrentIndex((prev) => (prev === 0 ? collection.length - 1 : prev - 1));
+    setCurrentIndex((prev) => (prev === 0 ? items.length - 1 : prev - 1));
   };
 
   const handleNext = () => {
-    setCurrentIndex((prev) => (prev === collection.length - 1 ? 0 : prev + 1));
+    setCurrentIndex((prev) => (prev === items.length - 1 ? 0 : prev + 1));
   };
 
   const toggleZoom = () => {
@@ -50,7 +51,6 @@ const SizeSelector = ({ onSelect, onClose, product, collection }) => {
           exit={{ scale: 0.95, opacity: 0 }}
           transition={{ duration: 0.3, ease: 'easeOut' }}
         >
-          {/* Botón cerrar */}
           <button
             onClick={onClose}
             className="absolute top-4 right-4 text-white text-4xl font-bold hover:text-white/60 z-50"
@@ -59,7 +59,6 @@ const SizeSelector = ({ onSelect, onClose, product, collection }) => {
             ×
           </button>
 
-          {/* Imagen producto */}
           <div className="relative mb-6 w-full h-[60vh] overflow-hidden rounded-lg">
             <AnimatePresence initial={false} mode="wait">
               <motion.div
@@ -81,7 +80,6 @@ const SizeSelector = ({ onSelect, onClose, product, collection }) => {
               </motion.div>
             </AnimatePresence>
 
-            {/* Navegación imágenes */}
             <button
               onClick={handlePrev}
               className="absolute left-2 top-1/2 -translate-y-1/2 text-4xl bg-white/10 hover:bg-white/30 text-white px-3 py-1 rounded-full z-20"
@@ -97,7 +95,6 @@ const SizeSelector = ({ onSelect, onClose, product, collection }) => {
               ›
             </button>
 
-            {/* Botón lupa */}
             <button
               onClick={toggleZoom}
               className="absolute bottom-3 right-3 bg-white/10 hover:bg-white/30 p-2 rounded-full text-white z-20"
@@ -107,12 +104,10 @@ const SizeSelector = ({ onSelect, onClose, product, collection }) => {
             </button>
           </div>
 
-          {/* Título producto */}
           <div className="text-center mb-6">
             <h2 className="text-2xl font-heading uppercase tracking-wide">{currentProduct.name}</h2>
           </div>
 
-          {/* Selección de talla */}
           <div className="mb-10">
             <label className="block text-white mb-4 text-xl font-semibold text-center uppercase">Talla:</label>
             <div className="flex justify-center gap-4">
@@ -135,7 +130,6 @@ const SizeSelector = ({ onSelect, onClose, product, collection }) => {
             </div>
           </div>
 
-          {/* Botón confirmar */}
           <button
             className={`w-11/12 mx-auto block py-4 border text-lg font-bold uppercase tracking-wide rounded-full shadow-md backdrop-blur-sm text-center transition-all ${
               selectedSize

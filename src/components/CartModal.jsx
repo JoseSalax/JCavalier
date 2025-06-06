@@ -1,23 +1,27 @@
-import React from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import React from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
 
 const CartModal = ({ isOpen, onClose, onAddMore, cartItems, onRemoveItem, onClearCart }) => {
-const message = cartItems
-  .map(
-    (item) =>
-      `Producto: ${item.model}%0A` +
-      `Talla: ${item.size}%0A` +
-      `Color: ${item.color}%0A` +
-      `Precio: ${item.price}`
-  )
-  .join('%0A%0A');
+  const encodeLine = (label, value) =>
+    `${label}: ${encodeURIComponent(value || '')}`
 
-const finalMessage =
-  `🧾 Pedido confirmado desde el sitio JCAVALIER:%0A%0A` +
-  message +
-  `%0A%0A💬 Gracias por su atención. Espero su confirmación.`;
+  const message = cartItems
+    .map(
+      (item) =>
+        encodeLine('Colección', item.collection) + '%0A' +
+        encodeLine('Producto', item.model) + '%0A' +
+        encodeLine('Talla', item.size) + '%0A' +
+        encodeLine('Color', item.color) + '%0A' +
+        encodeLine('Precio', item.price)
+    )
+    .join('%0A%0A')
 
-  const whatsappUrl = `https://wa.me/584128966414?text=${finalMessage}`;
+  const finalMessage =
+    '🧾 Pedido confirmado desde el sitio JCAVALIER:%0A%0A' +
+    message +
+    '%0A%0A💬 Gracias por su atención. Espero su confirmación.'
+
+  const whatsappUrl = `https://wa.me/584128966414?text=${finalMessage}`
 
   return (
     <AnimatePresence>
@@ -73,6 +77,9 @@ const finalMessage =
                     className="w-16 h-16 object-cover rounded border border-white"
                   />
                   <div className="flex-1">
+                    <div className="text-xs text-white/60 uppercase font-semibold mb-1">
+                      Colección: {item.collection}
+                    </div>
                     <div className="font-medium">{item.model}</div>
                     <div className="text-sm flex flex-col">
                       <span>Talla: {item.size}</span>
@@ -125,7 +132,7 @@ const finalMessage =
         </motion.div>
       )}
     </AnimatePresence>
-  );
-};
+  )
+}
 
-export default CartModal;
+export default CartModal
