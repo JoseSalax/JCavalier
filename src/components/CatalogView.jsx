@@ -59,23 +59,26 @@ const productData = {
   'Gold Sport Set Dama': {
     description: 'conjunto deportivo sport elaborado en tela French Terry 100% algodón. Franela estilo oversize y short tipo cargo.',
     items: [
-      { id: 31, name: 'Dama Sport Verde', price: 100.0, image: '/images/Gold Sport Set Dama/1.jpg' },
-      { id: 32, name: 'Dama Sport Azul', price: 85.0, image: '/images/Gold Sport Set Dama/2.jpg' },
-      { id: 33, name: 'Dama Sport Beige', price: 25.0, image: '/images/Gold Sport Set Dama/3.jpg' },
-      { id: 34, name: 'Dama Sport Blanco', price: 25.0, image: '/images/Gold Sport Set Dama/4.jpg' },
-      { id: 35, name: 'Dama Sport Rojo', price: 25.0, image: '/images/Gold Sport Set Dama/5.jpg' },
-    //  { id: 36, name: 'Dama Sport beige', price: 25.0, image: '/images/Gold Sport Set Dama/6.jpg' },
+      { id: 31, name: 'Gold Dama Sport Verde', price: 100.0, image: '/images/Gold Sport Set Dama/1.jpg' },
+      { id: 32, name: 'Gold Dama Sport Azul', price: 85.0, image: '/images/Gold Sport Set Dama/2.jpg' },
+      { id: 33, name: 'Gold Dama Sport Rojo', price: 25.0, image: '/images/Gold Sport Set Dama/3.jpg' },
+      { id: 34, name: 'Gold Dama Sport Blanco', price: 25.0, image: '/images/Gold Sport Set Dama/4.jpg' },
+      { id: 35, name: 'Gold Dama Sport Beige', price: 25.0, image: '/images/Gold Sport Set Dama/5.jpg' },
+      { id: 36, name: 'Overzise Gradiador Dama Marron', price: 25.0, image: '/images/Gold Sport Set Dama/6.jpg' },
+      { id: 37, name: 'Overzise Gradiador Dama Gris', price: 25.0, image: '/images/Gold Sport Set Dama/7.jpg' },
+      { id: 38, name: 'Overzise Gradiador Dama Negro', price: 25.0, image: '/images/Gold Sport Set Dama/8.jpg' },
+
     ],
   },
     'Gold Sport Set Caballero': {
     description: 'conjunto deportivo sport elaborado en tela French Terry 100% algodón. Franela estilo oversize y short tipo cargo.',
     items: [
-      { id: 31, name: 'Caballero Sport Blanco', price: 100.0, image: '/images/Gold Sport Set Caballero/1.jpg' },
-      { id: 32, name: 'Caballero Sport Rojo', price: 85.0, image: '/images/Gold Sport Set Caballero/2.jpg' },
-      { id: 33, name: 'Caballero Sport negro', price: 25.0, image: '/images/Gold Sport Set Caballero/3.jpg' },
-      { id: 34, name: 'Caballero Sport gris', price: 25.0, image: '/images/Gold Sport Set Caballero/4.jpg' },
-      { id: 35, name: 'Caballero Sport azul', price: 25.0, image: '/images/Gold Sport Set Caballero/5.jpg' },
-      { id: 36, name: 'Caballero Sport beige', price: 25.0, image: '/images/Gold Sport Set Caballero6.jpg' },
+      { id: 31, name: 'Gold Caballero Sport Blanco', price: 100.0, image: '/images/Gold Sport Set Caballero/1.jpg' },
+      { id: 32, name: 'Gold Caballero Sport Rojo', price: 85.0, image: '/images/Gold Sport Set Caballero/2.jpg' },
+      { id: 33, name: 'Gold Caballero Sport negro', price: 25.0, image: '/images/Gold Sport Set Caballero/3.jpg' },
+      { id: 34, name: 'Gold Caballero Sport gris', price: 25.0, image: '/images/Gold Sport Set Caballero/4.jpg' },
+      { id: 35, name: 'Gold Caballero Sport azul', price: 25.0, image: '/images/Gold Sport Set Caballero/5.jpg' },
+      { id: 36, name: 'Gold Caballero Sport beige', price: 25.0, image: '/images/Gold Sport Set Caballero6.jpg' },
     ],
   },
   'Set Playero': {

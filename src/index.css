@@ -35,5 +35,7 @@
 
 /* Estilos globales */
 body {
-  @apply bg-neutral text-gray-800;
+  @apply text-white;
+  background-color: #000000;
 }
+
