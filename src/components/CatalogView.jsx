@@ -21,10 +21,6 @@ const productData = {
     items: [
   { id: 11, name: 'Franela Imprerial Blanco', price: 32.0, image: '/images/Franela Imperial estilo Old money/1.jpg' },
    { id: 12, name: 'Franela Imprerial Verde', price: 28.0, image: '/images/Franela Imperial estilo Old money/2.jpg' },
-  //    { id: 13, name: 'Franela Imprerial Azul', price: 25.0, image: '/images/Franela y Chemise Imprerial/1.jpg' },
-  //    { id: 14, name: 'Chemise Imperial Rosa', price: 25.0, image: '/images/Franela y Chemise Imprerial/1.jpg' },
-  //    { id: 15, name: 'Chemise Imperial vrde', price: 25.0, image: '/images/Franela y Chemise Imprerial/1.jpg' },
-  //    { id: 16, name: 'Chemise Imperial Azul', price: 25.0, image: '/images/Franela y Chemise Imprerial/1.jpg' },
     ],
   },
     'Chemise Imperial estilo Old money': {
@@ -32,10 +28,6 @@ const productData = {
     items: [
   { id: 20, name: 'Chemise Imprerial Beige', price: 32.0, image: '/images/Chemise Imperial estilo Old money/1.jpg' },
    { id: 21, name: 'Chemise Imprerial Negro', price: 28.0, image: '/images/Chemise Imperial estilo Old money/2.jpg' },
-  //    { id: 15, name: 'Franela Imprerial Azul', price: 25.0, image: '/images/Franela y Chemise Imprerial/1.jpg' },
-  //    { id: 16, name: 'Chemise Imperial Rosa', price: 25.0, image: '/images/Franela y Chemise Imprerial/1.jpg' },
-  //    { id: 17, name: 'Chemise Imperial vrde', price: 25.0, image: '/images/Franela y Chemise Imprerial/1.jpg' },
-  //    { id: 18, name: 'Chemise Imperial Azul', price: 25.0, image: '/images/Franela y Chemise Imprerial/1.jpg' },
     ],
   },
 
@@ -64,9 +56,6 @@ const productData = {
       { id: 52, name: 'Gold Sport Dama Rojo', price: 25.0, image: '/images/Gold Sport Set Dama/3.jpg' },
       { id: 53, name: 'Gold Sport Dama Blanco', price: 25.0, image: '/images/Gold Sport Set Dama/4.jpg' },
       { id: 54, name: 'Gold Sport Dama Beige', price: 25.0, image: '/images/Gold Sport Set Dama/5.jpg' },
-      { id: 55, name: 'Overzise Gradiador Dama Marron', price: 25.0, image: '/images/Gold Sport Set Dama/6.jpg' },
-      { id: 56, name: 'Overzise Gradiador Dama Gris', price: 25.0, image: '/images/Gold Sport Set Dama/7.jpg' },
-      { id: 57, name: 'Overzise Gradiador Dama Negro', price: 25.0, image: '/images/Gold Sport Set Dama/8.jpg' },
 
     ],
   },
@@ -78,7 +67,6 @@ const productData = {
       { id: 62, name: 'Gold Sport Caballero Azul', price: 25.0, image: '/images/Gold Sport Set Caballero/3.jpg' },
       { id: 63, name: 'Gold Sport Caballero beige', price: 25.0, image: '/images/Gold Sport Set Caballero/4.jpg' },
       { id: 64, name: 'Gold Sport Caballero Rojo', price: 25.0, image: '/images/Gold Sport Set Caballero/5.jpg' },
-    //  { id: 36, name: 'Gold Caballero Sport beige', price: 25.0, image: '/images/Gold Sport Set Caballero6.jpg' },
     ],
   },
   'Set Playero': {
@@ -106,12 +94,10 @@ const productData = {
     'Merch Oversize Gladiador': {
     description: 'Elaboradas en tela yersy 100% algodón.',
     items: [
-      { id: 90, name: 'Camisa Cubana Blanco', price: 30.0, image: '/images/Camisas Cubanas/1.jpg' },
-      { id: 91, name: 'Camisa Cubana Beige', price: 25.0, image: '/images/Monarch linen/3.jpg' },
-      { id: 92, name: 'Camisa Cubana Rosa', price: 25.0, image: '/images/Monarch linen/4.jpg' },
-      { id: 93, name: 'Camisa Cubana Azul', price: 25.0, image: '/images/Monarch linen/5.jpg' },
-      { id: 94, name: 'Camisa Cubana Negro', price: 25.0, image: '/images/Monarch linen/6.jpg' },
-      { id: 95, name: 'Camisa Cubana Negro', price: 25.0, image: '/images/Monarch linen/6.jpg' },
+      { id: 90, name: 'Overzise Gradiador Dama Marron', price: 25.0, image: '/images/Merch Oversize Gladiador/1.jpg' },
+      { id: 91, name: 'Overzise Gradiador Dama Gris', price: 25.0, image: '/images/Merch Oversize Gladiador/2.jpg' },
+      { id: 91, name: 'Overzise Gradiador Dama Negro', price: 25.0, image: '/images/Merch Oversize Gladiador/3.jpg' },
+
     ],
   },
 };
