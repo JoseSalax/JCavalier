@@ -69,15 +69,15 @@ const productData = {
       { id: 64, name: 'Gold Sport Caballero Rojo', price: 25.0, image: '/images/Gold Sport Set Caballero/5.jpg' },
     ],
   },
-  'Set Playero': {
+  'Sun Set': {
     description: 'Looks frescos y tropicales ideales para la playa o el verano.',
     items: [
-      { id: 70, name: 'Palmeras Blanco', price: 50.0, image: '/images/Set Playero/1.jpg' },
-      { id: 71, name: 'Palmeras verde', price: 25.0, image: '/images/Monarch linen/6.jpg' },
-      { id: 72, name: 'Palmeras Beige', price: 25.0, image: '/images/Monarch linen/3.jpg' },
-      { id: 73, name: 'Palmeras Rosa', price: 25.0, image: '/images/Monarch linen/4.jpg' },
-      { id: 74, name: 'Palmeras Azul', price: 25.0, image: '/images/Monarch linen/5.jpg' },
-      { id: 75, name: 'Palmeras Negro', price: 25.0, image: '/images/Monarch linen/6.jpg' },
+      { id: 70, name: 'Sun Set Azul', price: 25.0, image: '/images/Sun Set/1.jpg' },
+      { id: 71, name: 'Sun Set Gris', price: 25.0, image: '/images/Sun Set/2.jpg' },
+      { id: 72, name: 'Sun Set Beige', price: 25.0, image: '/images/Sun Set/3.jpg' },
+      { id: 73, name: 'Sun Set Rosa', price: 25.0, image: '/images/Sun Set/4.jpg' },
+      { id: 74, name: 'Sun Set Azul', price: 25.0, image: '/images/Sun Set/5.jpg' },
+      { id: 75, name: 'Sun Set Negro', price: 25.0, image: '/images/Sun Set/6.jpg' },
     ],
   },
   'Camisas Cubanas': {
@@ -98,17 +98,6 @@ const productData = {
       { id: 91, name: 'Overzise Gradiador Dama Gris', price: 25.0, image: '/images/Merch Oversize Gladiador/2.jpg' },
       { id: 91, name: 'Overzise Gradiador Dama Negro', price: 25.0, image: '/images/Merch Oversize Gladiador/3.jpg' },
 
-    ],
-  },
-    'Sun Set': {
-    description: 'Camisas de vestir manga larga, elaboradas en tela lino.',
-    items: [
-      { id: 101, name: 'Sun Set Azul', price: 25.0, image: '/images/Sun Set/1.jpg' },
-      { id: 102, name: 'Sun Set Gris', price: 25.0, image: '/images/Sun Set/2.jpg' },
-      { id: 103, name: 'Sun Set Beige', price: 25.0, image: '/images/Sun Set/3.jpg' },
-      { id: 104, name: 'Sun Set Rosa', price: 25.0, image: '/images/Sun Set/4.jpg' },
-      { id: 105, name: 'Sun Set Azul', price: 25.0, image: '/images/Sun Set/5.jpg' },
-      { id: 106, name: 'Sun Set Negro', price: 25.0, image: '/images/Sun Set/6.jpg' },
     ],
   },
 };
