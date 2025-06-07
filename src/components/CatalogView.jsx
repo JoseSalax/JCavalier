@@ -100,6 +100,17 @@ const productData = {
 
     ],
   },
+    'Sun Set': {
+    description: 'Camisas de vestir manga larga, elaboradas en tela lino.',
+    items: [
+      { id: 101, name: 'Sun Set Azul', price: 25.0, image: '/images/Sun Set/1.jpg' },
+      { id: 102, name: 'Sun Set Gris', price: 25.0, image: '/images/Sun Set/2.jpg' },
+      { id: 103, name: 'Sun Setn Beige', price: 25.0, image: '/images/Sun Set/3.jpg' },
+      { id: 104, name: 'Sun Set Rosa', price: 25.0, image: '/images/Sun Set/4.jpg' },
+      { id: 105, name: 'Sun Set Azul', price: 25.0, image: '/images/Sun Set/5.jpg' },
+      { id: 106, name: 'Sun Set Negro', price: 25.0, image: '/images/Sun Set/6.jpg' },
+    ],
+  },
 };
 
 const CatalogView = () => {
