@@ -16,6 +16,34 @@ const HeroLanding = () => {
     return () => window.removeEventListener('beforeinstallprompt', handler);
   }, []);
 
+// Efecto para hacer el scroll después de que todo haya cargado
+useEffect(() => {
+  const handleLoad = () => {
+    setTimeout(() => {
+      const start = window.scrollY; // Posición actual
+      const end = 100; // Destino (100px desde la parte superior)
+      const duration = 1000; // Duración en milisegundos (1 segundo)
+
+      const startTime = performance.now();
+
+      const animateScroll = (currentTime) => {
+        const elapsedTime = currentTime - startTime;
+        const progress = Math.min(elapsedTime / duration, 1); // Asegura que no sobrepase el 100%
+
+        window.scrollTo(0, start + (end - start) * progress);
+
+        if (progress < 1) {
+          requestAnimationFrame(animateScroll); // Continuar animando hasta que se complete
+        }
+      };
+
+      requestAnimationFrame(animateScroll); // Iniciar la animación
+    }, 3500); // Ajusta el tiempo si es necesario
+  };
+
+  handleLoad();
+}, []);
+
   const handleInstall = () => {
     if (deferredPrompt) {
       deferredPrompt.prompt();
@@ -33,6 +61,7 @@ const HeroLanding = () => {
         backgroundSize: 'cover',
         backgroundPosition: 'center top',
         backgroundRepeat: 'no-repeat',
+        zIndex: 1, // Aseguramos que HeroLanding esté debajo del CatalogView
       }}
     >
       {/* Botones de instalación */}

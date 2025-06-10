@@ -112,7 +112,7 @@ const CatalogView = () => {
 
   const catalogRef = useRef(null);
   const [imagesLoaded, setImagesLoaded] = useState(false);
-  const [animateCatalog, setAnimateCatalog] = useState(false); // Nuevo estado para controlar la animación del catálogo
+  const [showCatalog, setShowCatalog] = useState(false); // Controla la visibilidad del catálogo
 
   useEffect(() => {
     const saved = localStorage.getItem('jcavalierCart');
@@ -126,7 +126,7 @@ const CatalogView = () => {
   // Esperamos un segundo para comenzar la animación del catálogo
   useEffect(() => {
     const timer = setTimeout(() => {
-      setAnimateCatalog(true); // Habilitamos la animación del catálogo
+      setShowCatalog(true); // Habilitamos la animación del catálogo después de 1 segundo
     }, 1000); // Espera de 1 segundo antes de mover el catálogo
 
     return () => clearTimeout(timer);
@@ -173,12 +173,12 @@ const CatalogView = () => {
     <section
       ref={catalogRef}
       id="tulio-catalogo"
-      className="bg-[#1a1a1a] py-16 px-4 min-h-[auto]"
+      className="bg-[#1a1a1a] py-16 px-4 min-h-[auto] relative z-20" // Aseguramos que el catálogo esté por encima
     >
       <motion.div
         className="max-w-7xl mx-auto"
-        initial={{ y: '50px' }} // Comienza desplazado
-        animate={{ y: animateCatalog ? 0 : '50px' }} // Se anima hacia arriba
+        initial={{ y: '50px' }} // Comienza desplazado hacia abajo
+        animate={{ y: showCatalog ? 0 : '50px' }} // Se desplaza hacia arriba después de un segundo
         transition={{ duration: 1, ease: 'easeInOut' }}
       >
         {!selectedCollection ? (
