@@ -104,15 +104,16 @@ const productData = {
 };
 
 
+
 const CatalogView = () => {
   const [selectedCollection, setSelectedCollection] = useState(null);
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [cartItems, setCartItems] = useState([]);
   const [isCartOpen, setIsCartOpen] = useState(false);
+  const [animateCatalog, setAnimateCatalog] = useState(false);
+  const [showCollection, setShowCollection] = useState(false);
 
   const catalogRef = useRef(null);
-  const [imagesLoaded, setImagesLoaded] = useState(false);
-  const [showCatalog, setShowCatalog] = useState(false); // Controla la visibilidad del catálogo
 
   useEffect(() => {
     const saved = localStorage.getItem('jcavalierCart');
@@ -123,17 +124,25 @@ const CatalogView = () => {
     localStorage.setItem('jcavalierCart', JSON.stringify(cartItems));
   }, [cartItems]);
 
-  // Esperamos un segundo para comenzar la animación del catálogo
   useEffect(() => {
     const timer = setTimeout(() => {
-      setShowCatalog(true); // Habilitamos la animación del catálogo después de 1 segundo
-    }, 1000); // Espera de 1 segundo antes de mover el catálogo
+      setAnimateCatalog(true);
+    }, 1000);
 
     return () => clearTimeout(timer);
   }, []);
 
-  const handleImageLoad = () => {
-    setImagesLoaded(true);
+  useEffect(() => {
+    if (selectedCollection) {
+      setTimeout(() => {
+        setShowCollection(true);
+      }, 500);
+    }
+  }, [selectedCollection]);
+
+  const handleCollectionChange = (name) => {
+    setSelectedCollection(name);
+    setShowCollection(false); // Ocultamos la colección antes de mostrarla
   };
 
   const handleSelectOptions = ({ size, color, model }) => {
@@ -157,28 +166,16 @@ const CatalogView = () => {
     setIsCartOpen(true);
   };
 
-  const handleRemoveItem = (index) => setCartItems((prev) => prev.filter((_, i) => i !== index));
-  const handleClearCart = () => setCartItems([]);
-  const handleCloseCart = () => setIsCartOpen(false);
-  const handleAddMore = () => {
-    setIsCartOpen(false);
-    setSelectedProduct(null);
-  };
-
-  const handleCollectionChange = (name) => {
-    setSelectedCollection(name);
-  };
-
   return (
     <section
       ref={catalogRef}
       id="tulio-catalogo"
-      className="bg-[#1a1a1a] py-16 px-4 min-h-[auto] relative z-20" // Aseguramos que el catálogo esté por encima
+      className="bg-[#1a1a1a] py-16 px-4 min-h-[auto]"
     >
       <motion.div
         className="max-w-7xl mx-auto"
-        initial={{ y: '50px' }} // Comienza desplazado hacia abajo
-        animate={{ y: showCatalog ? 0 : '50px' }} // Se desplaza hacia arriba después de un segundo
+        initial={{ y: '50px' }}
+        animate={{ y: animateCatalog ? 0 : '50px' }}
         transition={{ duration: 1, ease: 'easeInOut' }}
       >
         {!selectedCollection ? (
@@ -196,7 +193,6 @@ const CatalogView = () => {
                   }}
                   delay={i * 0.1}
                   onClick={() => handleCollectionChange(name)}
-                  onImageLoad={handleImageLoad}
                 />
               ))}
             </div>
@@ -224,17 +220,19 @@ const CatalogView = () => {
               </p>
             </div>
 
-            <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-6">
-              {productData[selectedCollection].items.map((product, i) => (
-                <ProductCard
-                  key={product.id}
-                  product={product}
-                  delay={i * 0.1}
-                  onClick={setSelectedProduct}
-                  onImageLoad={handleImageLoad}
-                />
-              ))}
-            </div>
+            {/* Solo mostrar la colección después de 500ms */}
+            {showCollection && (
+              <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-6">
+                {productData[selectedCollection].items.map((product, i) => (
+                  <ProductCard
+                    key={product.id}
+                    product={product}
+                    delay={i * 0.1}
+                    onClick={setSelectedProduct}
+                  />
+                ))}
+              </div>
+            )}
           </>
         )}
       </motion.div>
@@ -250,10 +248,10 @@ const CatalogView = () => {
 
       <CartModal
         isOpen={isCartOpen}
-        onClose={handleCloseCart}
-        onAddMore={handleAddMore}
-        onRemoveItem={handleRemoveItem}
-        onClearCart={handleClearCart}
+        onClose={() => setIsCartOpen(false)}
+        onAddMore={() => setIsCartOpen(false)}
+        onRemoveItem={(index) => setCartItems((prev) => prev.filter((_, i) => i !== index))}
+        onClearCart={() => setCartItems([])}
         cartItems={cartItems}
       />
     </section>
