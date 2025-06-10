@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import SizeSelector from './SizeSelector';
@@ -91,22 +91,26 @@ const productData = {
       { id: 85, name: 'Camisa Cubana Negro', price: 25.0, image: '/images/Monarch linen/6.jpg' },
     ],
   },
-    'Merch Oversize Gladiador': {
+
+  // Colección 'Merch Oversize Gladiador'
+  'Merch Oversize Gladiador': {
     description: 'Elaboradas en tela yersy 100% algodón.',
     items: [
       { id: 90, name: 'Overzise Gradiador Dama Marron', price: 25.0, image: '/images/Merch Oversize Gladiador/1.jpg' },
       { id: 91, name: 'Overzise Gradiador Dama Gris', price: 25.0, image: '/images/Merch Oversize Gladiador/2.jpg' },
-      { id: 91, name: 'Overzise Gradiador Dama Negro', price: 25.0, image: '/images/Merch Oversize Gladiador/3.jpg' },
-
+      { id: 92, name: 'Overzise Gradiador Dama Negro', price: 25.0, image: '/images/Merch Oversize Gladiador/3.jpg' },
     ],
   },
 };
+
 
 const CatalogView = () => {
   const [selectedCollection, setSelectedCollection] = useState(null);
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [cartItems, setCartItems] = useState([]);
   const [isCartOpen, setIsCartOpen] = useState(false);
+
+  const catalogRef = useRef(null); // Para hacer scroll al inicio de la colección
 
   useEffect(() => {
     const saved = localStorage.getItem('jcavalierCart');
@@ -117,32 +121,34 @@ const CatalogView = () => {
     localStorage.setItem('jcavalierCart', JSON.stringify(cartItems));
   }, [cartItems]);
 
-const handleSelectOptions = ({ size, color, model }) => {
-  const collectionName = selectedCollection;
+  useEffect(() => {
+    if (selectedCollection) {
+      catalogRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  }, [selectedCollection]);
 
-  const item = {
-    ...selectedProduct,
-    size,
-    color,
-    model,
-    collection: collectionName, // ✅ añadimos colección
+  const handleSelectOptions = ({ size, color, model }) => {
+    const collectionName = selectedCollection;
+    const item = {
+      ...selectedProduct,
+      size,
+      color,
+      model,
+      collection: collectionName,
+    };
+
+    setCartItems((prev) => {
+      const exists = prev.some(
+        (p) => p.id === item.id && p.size === item.size && p.color === item.color
+      );
+      return exists ? prev : [...prev, item];
+    });
+
+    setSelectedProduct(null);
+    setIsCartOpen(true);
   };
 
-  setCartItems((prev) => {
-    const exists = prev.some(
-      (p) => p.id === item.id && p.size === item.size && p.color === item.color
-    );
-    return exists ? prev : [...prev, item];
-  });
-
-  setSelectedProduct(null);
-  setIsCartOpen(true);
-};
-
-
-  const handleRemoveItem = (index) =>
-    setCartItems((prev) => prev.filter((_, i) => i !== index));
-
+  const handleRemoveItem = (index) => setCartItems((prev) => prev.filter((_, i) => i !== index));
   const handleClearCart = () => setCartItems([]);
   const handleCloseCart = () => setIsCartOpen(false);
   const handleAddMore = () => {
@@ -150,8 +156,12 @@ const handleSelectOptions = ({ size, color, model }) => {
     setSelectedProduct(null);
   };
 
+  const handleCollectionChange = (name) => {
+    setSelectedCollection(name);
+  };
+
   return (
-    <section id="tulio-catalogo" className="bg-[#1a1a1a] py-16 px-4 min-h-[auto]">
+    <section ref={catalogRef} id="tulio-catalogo" className="bg-[#1a1a1a] py-16 px-4 min-h-[auto]">
       <div className="max-w-7xl mx-auto">
         {!selectedCollection ? (
           <>
@@ -167,7 +177,7 @@ const handleSelectOptions = ({ size, color, model }) => {
                     image: data.items[0]?.image,
                   }}
                   delay={i * 0.1}
-                  onClick={() => setSelectedCollection(name)}
+                  onClick={() => handleCollectionChange(name)}
                 />
               ))}
             </div>
@@ -175,12 +185,15 @@ const handleSelectOptions = ({ size, color, model }) => {
         ) : (
           <>
             <div className="mb-6">
-              <button
+              <motion.button
                 onClick={() => setSelectedCollection(null)}
-                className="text-sm text-white hover:underline mb-4 block text-left"
+                className="text-xl text-white hover:underline mb-4 block text-left"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1, scale: 1.1 }}
+                transition={{ duration: 0.8, ease: 'easeInOut', repeat: Infinity, repeatType: 'reverse' }}
               >
                 ← Volver a colecciones
-              </button>
+              </motion.button>
 
               <h3 className="text-white text-2xl font-heading uppercase tracking-wider text-center mb-2">
                 {selectedCollection}
