@@ -111,6 +111,7 @@ const CatalogView = () => {
   const [isCartOpen, setIsCartOpen] = useState(false);
 
   const catalogRef = useRef(null); // Para hacer scroll al inicio de la colección
+  const [imagesLoaded, setImagesLoaded] = useState(false); // Nuevo estado para controlar la carga de las imágenes
 
   useEffect(() => {
     const saved = localStorage.getItem('jcavalierCart');
@@ -126,6 +127,11 @@ const CatalogView = () => {
       catalogRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
   }, [selectedCollection]);
+
+  // Función para manejar el evento de carga de las imágenes
+  const handleImageLoad = () => {
+    setImagesLoaded(true); // Marcar como cargadas todas las imágenes
+  };
 
   const handleSelectOptions = ({ size, color, model }) => {
     const collectionName = selectedCollection;
@@ -178,6 +184,7 @@ const CatalogView = () => {
                   }}
                   delay={i * 0.1}
                   onClick={() => handleCollectionChange(name)}
+                  onImageLoad={handleImageLoad} // Pasamos la función para manejar la carga de la imagen
                 />
               ))}
             </div>
@@ -212,6 +219,7 @@ const CatalogView = () => {
                   product={product}
                   delay={i * 0.1}
                   onClick={setSelectedProduct}
+                  onImageLoad={handleImageLoad} // Pasamos la función para manejar la carga de la imagen
                 />
               ))}
             </div>
@@ -240,14 +248,20 @@ const CatalogView = () => {
   );
 };
 
-const ProductCard = ({ product, delay, onClick }) => {
+const ProductCard = ({ product, delay, onClick, onImageLoad }) => {
   const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.2 });
+  const [imageLoaded, setImageLoaded] = useState(false); // Estado para gestionar el estado de carga de la imagen
+
+  const handleImageLoad = () => {
+    setImageLoaded(true); // Establecemos que la imagen se ha cargado
+    if (onImageLoad) onImageLoad(); // Llamamos a la función onImageLoad que se pasa como prop
+  };
 
   return (
     <motion.div
       ref={ref}
       initial={{ opacity: 0, y: 40 }}
-      animate={inView ? { opacity: 1, y: 0 } : {}}
+      animate={inView && imageLoaded ? { opacity: 1, y: 0 } : { opacity: 1 }} // Solo animamos si la imagen está cargada
       transition={{ duration: 0.7, delay }}
       className="bg-[#262626] p-4 text-white rounded-md cursor-pointer hover:shadow-md transition"
       onClick={() => onClick(product)}
@@ -257,6 +271,7 @@ const ProductCard = ({ product, delay, onClick }) => {
           src={product.image}
           alt={`Vista previa de ${product.name}`}
           className="w-full h-full object-cover transition-transform duration-500 ease-in-out hover:scale-105"
+          onLoad={handleImageLoad} // Usamos onLoad para manejar la carga de la imagen
         />
       </div>
       <div className="mt-4 text-sm text-center">
